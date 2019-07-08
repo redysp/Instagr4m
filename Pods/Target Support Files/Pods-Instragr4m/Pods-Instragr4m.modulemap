@@ -1,0 +1,6 @@
+framework module Pods_Instragr4m {
+  umbrella header "Pods-Instragr4m-umbrella.h"
+
+  export *
+  module * { export * }
+}
