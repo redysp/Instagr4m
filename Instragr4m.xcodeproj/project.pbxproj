@@ -17,6 +17,7 @@
 		2462B9F922D3F1C9001D5797 /* Instragr4mTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2462B9F822D3F1C9001D5797 /* Instragr4mTests.m */; };
 		2462BA0422D3F1C9001D5797 /* Instragr4mUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2462BA0322D3F1C9001D5797 /* Instragr4mUITests.m */; };
 		24D9E3B222D40C2E0088C390 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D9E3B122D40C2E0088C390 /* SignUpViewController.m */; };
+		24D9E3B622D53DDE0088C390 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D9E3B522D53DDE0088C390 /* HomeViewController.m */; };
 		A5CC074DBF1A186BE9415ADC /* Pods_Instragr4mTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA76627FBB806B8340E6F64F /* Pods_Instragr4mTests.framework */; };
 		B5BE1D04941E977523C0BCDC /* Pods_Instragr4mUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F6730D5951D07F046FB22C /* Pods_Instragr4mUITests.framework */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,8 @@
 		2462BA0522D3F1C9001D5797 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24D9E3B022D40C2E0088C390 /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		24D9E3B122D40C2E0088C390 /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		24D9E3B422D53DDE0088C390 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		24D9E3B522D53DDE0088C390 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		5A0D01CD23839DDBBC6020B8 /* Pods-Instragr4mTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instragr4mTests.debug.xcconfig"; path = "Target Support Files/Pods-Instragr4mTests/Pods-Instragr4mTests.debug.xcconfig"; sourceTree = "<group>"; };
 		62F6730D5951D07F046FB22C /* Pods_Instragr4mUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instragr4mUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C79DEE40C8F7303B1EA29B /* Pods-Instragr4mUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instragr4mUITests.debug.xcconfig"; path = "Target Support Files/Pods-Instragr4mUITests/Pods-Instragr4mUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -134,13 +137,10 @@
 		2462B9DE22D3F1C9001D5797 /* Instragr4m */ = {
 			isa = PBXGroup;
 			children = (
+				24D9E3B322D53C320088C390 /* View Controllers */,
 				2462B9DF22D3F1C9001D5797 /* AppDelegate.h */,
 				2462B9E022D3F1C9001D5797 /* AppDelegate.m */,
-				2462B9E222D3F1C9001D5797 /* LoginViewController.h */,
-				2462B9E322D3F1C9001D5797 /* LoginViewController.m */,
 				2462B9E522D3F1C9001D5797 /* Main.storyboard */,
-				24D9E3B022D40C2E0088C390 /* SignUpViewController.h */,
-				24D9E3B122D40C2E0088C390 /* SignUpViewController.m */,
 				2462B9E822D3F1C9001D5797 /* Assets.xcassets */,
 				2462B9EA22D3F1C9001D5797 /* LaunchScreen.storyboard */,
 				2462B9ED22D3F1C9001D5797 /* Info.plist */,
@@ -165,6 +165,19 @@
 				2462BA0522D3F1C9001D5797 /* Info.plist */,
 			);
 			path = Instragr4mUITests;
+			sourceTree = "<group>";
+		};
+		24D9E3B322D53C320088C390 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2462B9E322D3F1C9001D5797 /* LoginViewController.m */,
+				2462B9E222D3F1C9001D5797 /* LoginViewController.h */,
+				24D9E3B122D40C2E0088C390 /* SignUpViewController.m */,
+				24D9E3B022D40C2E0088C390 /* SignUpViewController.h */,
+				24D9E3B422D53DDE0088C390 /* HomeViewController.h */,
+				24D9E3B522D53DDE0088C390 /* HomeViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		89A0C69B73D2C07DD1AD4A9C /* Frameworks */ = {
@@ -400,6 +413,7 @@
 				2462B9E422D3F1C9001D5797 /* LoginViewController.m in Sources */,
 				2462B9EF22D3F1C9001D5797 /* main.m in Sources */,
 				24D9E3B222D40C2E0088C390 /* SignUpViewController.m in Sources */,
+				24D9E3B622D53DDE0088C390 /* HomeViewController.m in Sources */,
 				2462B9E122D3F1C9001D5797 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

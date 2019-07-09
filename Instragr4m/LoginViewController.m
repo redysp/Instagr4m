@@ -29,7 +29,7 @@
     [self performSegueWithIdentifier:@"signUpSegue" sender:nil];
 }
 
-- (void)loginUser {
+- (IBAction)loginUser:(id)sender {
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
     
@@ -40,8 +40,12 @@
             NSLog(@"User logged in successfully");
             
             // display view controller that needs to shown after successful login
+            [self performSegueWithIdentifier:@"successLoginSegue" sender:nil];
         }
     }];
 }
+
+
+
 
 @end
