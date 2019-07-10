@@ -1,5 +1,5 @@
 //
-//  HomeViewController.h
+//  ComposeViewController.h
 //  Instragr4m
 //
 //  Created by powercarlos25 on 7/9/19.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HomeViewController : UITabBarController
+@interface ComposeViewController : UIViewController
 
 @end
 

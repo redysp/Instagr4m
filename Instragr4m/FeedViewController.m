@@ -1,28 +1,37 @@
 //
-//  HomeViewController.m
+//  FeedViewController.m
 //  Instragr4m
 //
 //  Created by powercarlos25 on 7/9/19.
 //  Copyright © 2019 powercarlos25. All rights reserved.
 //
 
-#import "HomeViewController.h"
+#import "FeedViewController.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "Parse/Parse.h"
+#import "FeedCell.h"
 
-@interface HomeViewController ()
+@interface FeedViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic) NSArray *uploads;
 
 @end
 
-@implementation HomeViewController
+@implementation FeedViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    [self.tableView reloadData];
 }
-- (IBAction)logOutUser:(id)sender {
-    NSLog(@"HELLO");
+- (IBAction)logoutUser:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -34,7 +43,6 @@
     }];
 }
 
-
 /*
 #pragma mark - Navigation
 
@@ -44,5 +52,18 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    FeedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedCell"];
+
+    return cell;
+    
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.uploads.count;
+}
+
 
 @end
