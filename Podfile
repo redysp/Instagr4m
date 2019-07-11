@@ -7,6 +7,7 @@ target 'Instragr4m' do
 
   # Pods for Instragr4m
   pod 'Parse'
+  pod 'ParseUI'
 
   target 'Instragr4mTests' do
     inherit! :search_paths

@@ -11,12 +11,11 @@
 #import "LoginViewController.h"
 #import "Parse/Parse.h"
 #import "FeedCell.h"
+#import "Post.h"
 
-@interface FeedViewController () <UITableViewDataSource, UITableViewDelegate>
-
+@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSArray *uploads;
 
 @end
 
@@ -25,11 +24,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    [self.tableView reloadData];
+    PFQuery *query = [Post query];
+    //[query orderByDescending:@"createdAt"];
+    [query includeKey:@"caption"];
+    [query includeKey:@"image"];
+    query.limit = 20;
+    
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            // do something with the array of object returned by the call
+            self.uploadedPosts = [[NSMutableArray alloc] initWithArray:posts];
+            
+            // Reload table view with messages
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 - (IBAction)logoutUser:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -42,6 +57,7 @@
         // PFUser.current() will now be nil
     }];
 }
+
 
 /*
 #pragma mark - Navigation
@@ -56,13 +72,18 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     FeedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedCell"];
-
+    PFObject *eachUpload = self.uploadedPosts[indexPath.row];
+    PFUser *user = eachUpload[@"user"];
+    
+    cell.postedImageView.image = eachUpload[@"image"];
+    cell.postedCaptionView.text = eachUpload[@"caption"];
+    //cell.
     return cell;
     
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.uploads.count;
+    return self.uploadedPosts.count;
 }
 
 

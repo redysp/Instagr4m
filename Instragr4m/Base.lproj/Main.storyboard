@@ -62,6 +62,10 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="iHH-r4-nIW" appends="YES" id="GGC-b8-k4d"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -74,6 +78,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="iHH-r4-nIW">
+                    <connections>
+                        <action selector="onTap:" destination="BYZ-38-t0r" id="bS5-jm-2Bl"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="138.40000000000001" y="133.5832083958021"/>
         </scene>
@@ -159,14 +168,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="364" id="GNa-8Q-8fi">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="364" id="GNa-8Q-8fi" customClass="FeedCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="364"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GNa-8Q-8fi" id="ygm-n5-W4d">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="363.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fil-xf-sxk">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fil-xf-sxk" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="-11" width="375" height="328"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="1" green="0.16281954639999999" blue="0.047203162159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -180,6 +189,10 @@
                                                 </textView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="postedCaptionView" destination="7we-RZ-OOv" id="3NU-lX-0Z7"/>
+                                            <outlet property="postedImageView" destination="Fil-xf-sxk" id="KQQ-AT-g5Y"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -223,28 +236,65 @@
             </objects>
             <point key="canvasLocation" x="4270" y="134"/>
         </scene>
-        <!--Compose View Controller-->
+        <!--New Post-->
         <scene sceneID="rtM-3U-Ol5">
             <objects>
                 <viewController id="LZQ-F4-EcB" customClass="ComposeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pNB-AI-Nlu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIv-BB-ao0">
+                                <rect key="frame" x="66" y="617" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Gallery"/>
+                                <connections>
+                                    <action selector="getCameraRoll:" destination="LZQ-F4-EcB" eventType="touchUpInside" id="SCW-sh-iNI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4f-Bb-nFo">
+                                <rect key="frame" x="239" y="617" width="85" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Take Picture"/>
+                                <connections>
+                                    <action selector="takePicture:" destination="LZQ-F4-EcB" eventType="touchUpInside" id="YR9-2P-iMJ"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lb3-5k-Oxh">
+                                <rect key="frame" x="16" y="92" width="122" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tU2-N3-9m4">
+                                <rect key="frame" x="146" y="92" width="213" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="R6c-6V-9e2"/>
                     </view>
-                    <navigationItem key="navigationItem" id="O81-YL-phS">
+                    <navigationItem key="navigationItem" title="New Post" id="O81-YL-phS">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="R0E-QV-rKa">
                             <connections>
                                 <action selector="cancelCompose:" destination="LZQ-F4-EcB" id="ThO-VW-heB"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Share" id="3RS-uG-3aW"/>
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="3RS-uG-3aW">
+                            <connections>
+                                <action selector="sharePost:" destination="LZQ-F4-EcB" id="qzt-Ww-SJr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="aboutToPostImage" destination="lb3-5k-Oxh" id="1R1-ft-4bw"/>
+                        <outlet property="captionOfPost" destination="tU2-N3-9m4" id="pnv-du-uF0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ix-tN-lrr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5185" y="134"/>
+            <point key="canvasLocation" x="5184.8000000000002" y="133.5832083958021"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="lYr-YT-DAn">

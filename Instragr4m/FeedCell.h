@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
+@import ParseUI;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FeedCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *postedImageView;
+@property (weak, nonatomic) IBOutlet UITextView *postedCaptionView;
+
+@property (strong, nonatomic) Post *post; 
 
 @end
 
