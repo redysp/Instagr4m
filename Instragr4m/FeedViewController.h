@@ -12,7 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FeedViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) NSMutableArray *uploadedPosts; 
+@property (strong, nonatomic) NSMutableArray *uploadedPosts;
+
+-(void)loadFeed;
 
 @end
 

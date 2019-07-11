@@ -15,7 +15,7 @@
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -27,24 +27,12 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    PFQuery *query = [Post query];
-    //[query orderByDescending:@"createdAt"];
-    [query includeKey:@"caption"];
-    [query includeKey:@"image"];
-    query.limit = 20;
+    [self loadFeed];
     
-    // fetch data asynchronously
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
-            // do something with the array of object returned by the call
-            self.uploadedPosts = [[NSMutableArray alloc] initWithArray:posts];
-            
-            // Reload table view with messages
-            [self.tableView reloadData];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(loadFeed)forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+
 }
 - (IBAction)logoutUser:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -57,6 +45,32 @@
         // PFUser.current() will now be nil
     }];
 }
+
+-(void)loadFeed{
+    PFQuery *query = [Post query];
+    //[query orderByDescending:@"createdAt"];
+    [query includeKey:@"caption"];
+    [query includeKey:@"image"];
+    query.limit = 20;
+    
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts != nil) {
+            // do something with the array of object returned by the call
+            self.uploadedPosts = [[NSMutableArray alloc] initWithArray:posts];
+            
+            // Reload table view with messages
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    
+    [self.refreshControl endRefreshing];
+
+}
+
+
 
 
 /*
@@ -72,12 +86,16 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     FeedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedCell"];
-    PFObject *eachUpload = self.uploadedPosts[indexPath.row];
-    PFUser *user = eachUpload[@"user"];
+    Post *eachUpload = self.uploadedPosts[indexPath.row];
+    //PFUser *user = eachUpload[@"user"];
+    PFFileObject *picture = eachUpload.image;
     
-    cell.postedImageView.image = eachUpload[@"image"];
+    [picture getDataInBackgroundWithBlock:^(NSData * imageData, NSError * error) {
+        if (!error){
+            cell.postedImageView.image = [UIImage imageWithData:imageData];
+        }
+    }];
     cell.postedCaptionView.text = eachUpload[@"caption"];
-    //cell.
     return cell;
     
 }
