@@ -12,9 +12,12 @@
 #import "Parse/Parse.h"
 #import "FeedCell.h"
 #import "Post.h"
+#import "DetailViewController.h"
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
@@ -26,6 +29,9 @@
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    
+    // set delegate
     
     [self loadFeed];
     
@@ -48,7 +54,7 @@
 
 -(void)loadFeed{
     PFQuery *query = [Post query];
-    //[query orderByDescending:@"createdAt"];
+    [query orderByDescending:@"createdAt"];
     [query includeKey:@"caption"];
     [query includeKey:@"image"];
     query.limit = 20;
@@ -73,15 +79,21 @@
 
 
 
-/*
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    UITableViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+    Post *clickedPost = self.uploadedPosts[indexPath.row];
+    
+    DetailViewController *detailsViewController = [segue destinationViewController];
+    detailsViewController.post = clickedPost;
 }
-*/
+
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
@@ -96,6 +108,17 @@
         }
     }];
     cell.postedCaptionView.text = eachUpload[@"caption"];
+    
+    // Get date object as an NSDate
+    NSDate *createdDate = eachUpload.createdAt;
+    
+    // Format NSDate and view as string
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd 'at' HH:mm";
+    NSString *dateString = [dateFormatter stringFromDate:createdDate];
+
+    
+    cell.timeStampView.text = dateString;
     return cell;
     
 }
