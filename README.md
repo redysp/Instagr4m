@@ -51,7 +51,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![](InstagramUse.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
@@ -64,7 +64,7 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 
 ## Notes
 
-Some of the challenges that I faced with the app is the limited we had, since we had to do a lot of setup for the app. Also, I tackled multiple optional stories at once which unfortunately led me to not finish some of them. 
+Some of the challenges that I faced with the app is the limited time we had, since we had to do a lot of setup for the app. Also, I tackled multiple optional stories at once which unfortunately led me to not finish some of them. 
 
 For the profile tab, I created the tab and the profile view, I only needed to get the data from the Parse server and I would have finished that part. 
 
