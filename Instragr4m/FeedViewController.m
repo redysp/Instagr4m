@@ -13,11 +13,11 @@
 #import "FeedCell.h"
 #import "Post.h"
 #import "DetailViewController.h"
+#import "ComposeViewController.h"
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
@@ -30,19 +30,15 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    
-    // set delegate
-    
     [self loadFeed];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(loadFeed)forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
-
 }
+
 - (IBAction)logoutUser:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     appDelegate.window.rootViewController = loginViewController;
@@ -64,36 +60,33 @@
         if (posts != nil) {
             // do something with the array of object returned by the call
             self.uploadedPosts = [[NSMutableArray alloc] initWithArray:posts];
-            
             // Reload table view with messages
             [self.tableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    
     [self.refreshControl endRefreshing];
-
 }
-
-
-
-
-
 
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    UITableViewCell *tappedCell = sender;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-    Post *clickedPost = self.uploadedPosts[indexPath.row];
-    
-    DetailViewController *detailsViewController = [segue destinationViewController];
-    detailsViewController.post = clickedPost;
+    if ([segue.identifier isEqualToString:@"ComposeSegue"]){
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+    }
+    else{
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Post *clickedPost = self.uploadedPosts[indexPath.row];
+        
+        DetailViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.post = clickedPost;
+    }
 }
-
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
@@ -116,16 +109,13 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"yyyy-MM-dd 'at' HH:mm";
     NSString *dateString = [dateFormatter stringFromDate:createdDate];
-
-    
     cell.timeStampView.text = dateString;
+
     return cell;
-    
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.uploadedPosts.count;
 }
-
 
 @end

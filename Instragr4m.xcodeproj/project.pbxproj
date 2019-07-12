@@ -21,6 +21,7 @@
 		2462BA0422D3F1C9001D5797 /* Instragr4mUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2462BA0322D3F1C9001D5797 /* Instragr4mUITests.m */; };
 		247B5D7322D7EB9D002051AC /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 247B5D7222D7EB9D002051AC /* DetailViewController.m */; };
 		247B5D7622D80E22002051AC /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 247B5D7522D80E22002051AC /* ProfileViewController.m */; };
+		247B5D7922D863CF002051AC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 247B5D7822D863CF002051AC /* User.m */; };
 		24D9E3B222D40C2E0088C390 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D9E3B122D40C2E0088C390 /* SignUpViewController.m */; };
 		A8047AB94A7797BC49604CB1 /* Pods_Instragr4mTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BC5983225469A181942B775 /* Pods_Instragr4mTests.framework */; };
 		AB7E236C6ACFD8CDFC82B4B1 /* Pods_Instragr4mUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3BF32642B817CABB5E8582 /* Pods_Instragr4mUITests.framework */; };
@@ -73,6 +74,8 @@
 		247B5D7222D7EB9D002051AC /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		247B5D7422D80E22002051AC /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		247B5D7522D80E22002051AC /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		247B5D7722D863CF002051AC /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		247B5D7822D863CF002051AC /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		24D9E3B022D40C2E0088C390 /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		24D9E3B122D40C2E0088C390 /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		2527C4C8DBD4B94F68470FFE /* Pods-Instragr4m.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instragr4m.debug.xcconfig"; path = "Target Support Files/Pods-Instragr4m/Pods-Instragr4m.debug.xcconfig"; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 				2416DA9322D55893006F55DD /* FeedCell.h */,
 				2416DA9422D55893006F55DD /* FeedCell.m */,
 				244CE00422D6B0C40057D032 /* Post.h */,
+				247B5D7722D863CF002051AC /* User.h */,
+				247B5D7822D863CF002051AC /* User.m */,
 				244CE00522D6B0C40057D032 /* Post.m */,
 			);
 			path = Instragr4m;
@@ -441,6 +446,7 @@
 				24D9E3B222D40C2E0088C390 /* SignUpViewController.m in Sources */,
 				247B5D7622D80E22002051AC /* ProfileViewController.m in Sources */,
 				2416DA9522D55893006F55DD /* FeedCell.m in Sources */,
+				247B5D7922D863CF002051AC /* User.m in Sources */,
 				2416DA9822D55909006F55DD /* ComposeViewController.m in Sources */,
 				2416DA9222D55237006F55DD /* FeedViewController.m in Sources */,
 				2462B9E122D3F1C9001D5797 /* AppDelegate.m in Sources */,

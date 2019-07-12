@@ -25,8 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.captionOfPost.text = @"placeholder";
 }
 
 - (IBAction)cancelCompose:(id)sender {
@@ -76,7 +74,7 @@
     // Do something with the images (based on your use case)
     
     // Resize image
-    editedImage = [self resizeImage:originalImage withSize:(CGSizeMake(100, 100))];
+    editedImage = [self resizeImage:originalImage withSize:(CGSizeMake(500, 500))];
     
     self.aboutToPostImage.image = editedImage;
     

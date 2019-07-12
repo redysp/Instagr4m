@@ -10,10 +10,10 @@
 #import "Parse/Parse.h"
 
 @interface SignUpViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *theNewUsernameField;
 @property (weak, nonatomic) IBOutlet UITextField *theNewEmailField;
 @property (weak, nonatomic) IBOutlet UITextField *theNewPasswordField;
-
 
 @end
 
@@ -39,13 +39,17 @@
             NSLog(@"Error: %@", error.localizedDescription);
         } else {
             NSLog(@"User registered successfully");
-            
             // manually segue to logged in view
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
-
         }
     }];
 }
+
+- (IBAction)didTapSignUp:(id)sender {
+    [self.view endEditing:(YES)];
+}
+
+
 
 
 /*
